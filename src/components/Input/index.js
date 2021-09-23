@@ -1,17 +1,17 @@
-import {Container, InputContainer} from "./style"
+import { Container, InputContainer } from "./style";
 
-const Input = ({label, icon: Icon, ...rest}) => {
-    return (
-        <Container >
-            <div>
-                {label}
-            </div>
-            <InputContainer>
-                <span>{Icon && <Icon />}</span>
-                <input {...rest} />
-            </InputContainer>
-        </Container>
-    )
-}
+const Input = ({ label, icon: Icon, register, name, error = "", ...rest }) => {
+  return (
+    <Container>
+      <div>
+        {label} {!!error && <span> - {error}</span>}
+      </div>
+      <InputContainer isErrored={!!error}>
+        {Icon && <Icon />}
+        <input {...register(name)} {...rest} />
+      </InputContainer>
+    </Container>
+  );
+};
 
-export default Input 
+export default Input;
